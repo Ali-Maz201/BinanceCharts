@@ -1,18 +1,21 @@
 <html>
 <head>
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 </head>
+
 <body style="background: black;">
   <div class="container text-center">
     <h3>Binnance Charts</h3>
+
     <form class="form-inline m-5" onsubmit="return false">
       <div class="container">
         <input type="text" class="form-control" id="currentPair" placeholder="Use a format like BTCUSDT">
         <button class="btn btn-warning" onclick="changePair()"> Search </button>
       </div>
     </form>
+
     <div id="chartContainer">
       <div id="chart"></div>
       <div id="interval" style="display: none;">
@@ -28,6 +31,6 @@
     </div>
   </div>
 
-  <script src="main.js"></script>
+  <script src="./main.js"></script>
 </body>
 </html>

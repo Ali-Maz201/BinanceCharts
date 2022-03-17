@@ -1,20 +1,39 @@
-const binancePairs = ['BTCUSDT', "ETHUSDT", "BNBUSDT"];
+let binancePairs;
 let interval = "12h";
 let pair;
 
 async function changePair() {
   pair = document.getElementById("currentPair").value;
+  if(binancePairs === undefined){
+    binancePairs = await getBinancePair();
+  }
   if(binancePairs.includes(pair.toUpperCase())) {
     await createChart();
   }
 }
+
 async function changeInterval (id) {
     interval = id;
     await createChart();
 }
 
+async function getBinancePair() {
+    try {
+      const request = await fetch('https://api.binance.com/api/v1/exchangeInfo');
+      const response = await request.json();
+      const pairData = response.symbols.map(data => {
+          return data.symbol;
+      });
+      return pairData;
+
+    } catch (e) {
+      console.log(e);
+    }
+}
+
 async function createChart(){
   removeChart();
+
   const url = "https://api.binance.com/api/v3/klines?symbol=" + pair.toUpperCase() + "&interval=" + interval + "&limit=1000";
   const chart = LightweightCharts.createChart(document.getElementById("chart"), { width:1100, height:400 });
   const candles =  chart.addCandlestickSeries();
